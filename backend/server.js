@@ -8,6 +8,7 @@ import productRoutes from "./routers/productRoutes.js";
 import connectDB from "./config/db.js";
 
 
+// trigger reload
 const app = express();
 
 // start server
