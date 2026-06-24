@@ -177,29 +177,39 @@ This would significantly improve performance under high traffic.
 
 ## 🏠 Home Page
 
-* screenshots\home-desktop.png
-* screenshots\home-mobile.png
+### Desktop View
+![Home Page Desktop](screenshots/home-desktop.png)
+
+### Mobile View
+<img src="screenshots/home-mobile.png" width="300" alt="Home Page Mobile" />
 
 ---
 
 ## 🛍️ Products Page
 
-* screenshots\products-desktop.png
-* screenshots\products-2-desktop.png
-* screenshots\products-mobile.png
+### Desktop View
+![Products Page Desktop 1](screenshots/products-desktop.png)
+![Products Page Desktop 2](screenshots/products-2-desktop.png)
+
+### Mobile View
+<img src="screenshots/products-mobile.png" width="300" alt="Products Page Mobile" />
 
 ---
 
 ## 🎛️ Filters
 
-* screenshots\filters-mobile.png
+### Mobile View
+<img src="screenshots/filters-mobile.png" width="300" alt="Filters Mobile" />
 
 ---
 
 ## ➕ Add Product
 
-* screenshots\add-product-desktop.png
-* screenshots\add-product-mobile.png
+### Desktop View
+![Add Product Desktop](screenshots/add-product-desktop.png)
+
+### Mobile View
+<img src="screenshots/add-product-mobile.png" width="300" alt="Add Product Mobile" />
 
 ---
 
