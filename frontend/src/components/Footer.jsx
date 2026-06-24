@@ -44,26 +44,26 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/products?category=jewelery"
+                  to="/products?category=books"
                   className="text-gray-400 hover:text-white"
                 >
-                  Jewelry
+                  Books
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/products?category=men's clothing"
+                  to="/products?category=clothing"
                   className="text-gray-400 hover:text-white"
                 >
-                  Men's Clothing
+                  Clothing
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/products?category=women's clothing"
+                  to="/products?category=sports"
                   className="text-gray-400 hover:text-white"
                 >
-                  Women's Clothing
+                  Home
                 </Link>
               </li>
             </ul>

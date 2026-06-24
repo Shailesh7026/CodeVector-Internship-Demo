@@ -1,86 +1,223 @@
+# CodeVector-Internship-Demo
 
-# VibeCart — Mock E-Commerce Cart App
+This project demonstrates scalable product listing, filtering, search, **cursor-based pagination** with a clean and responsive UI.
 
-A fully responsive, full-stack **mock e-commerce cart application** built as part of the **Vibe Commerce Internship Assignment**.  
-This project demonstrates realistic shopping cart, checkout, and user flows — combining modern UI, backend APIs, and persistent data handling.
+The main focus of this project was to build an optimized product browsing experience with efficient backend APIs and smooth frontend interactions.
 
----
 
-## 🎥 Demo Video
-🎬 [Watch the Demo](https://drive.google.com/file/d/1D6fkYuKmg2s5ZtWki_xhBJ7vrO54Mk7P/view?t=4)  
+# 🧠 Architecture Overview
 
----
-
-## 🧠 Architecture Overview
-
-Frontend (React + Tailwind + shadcn/ui)
-↓ Axios + Cookies
-Backend (Node.js + Express)
+Frontend (React + Tailwind CSS)
+↓ Axios
+Backend (Node.js + Express.js)
 ↓
-Database (MongoDB Atlas)
----
-
-## 💻 API Endpoints
-
-| Method | Endpoint | Description |
-|:--------:|:-----------|:-------------|
-| `GET` | `/api/products` | Fetch product list (or from FakeStore API) |
-| `GET` | `/api/cart/items` | Retrieve current cart for user/guest |
-| `POST` | `/api/cart/items` | Add item to cart |
-| `DELETE` | `/api/cart/items/:id` | Remove item from cart |
-| `POST` | `/api/checkout` | Mock checkout — returns fake receipt |
+Database (Supabase - PostgreSQL) 
 
 ---
 
-## 🧠 Frontend Pages & Functionality
+# 🚀 Tech Stack
 
-| Page | Description |
-|------|--------------|
-| **Products** | List + filters (category, price, search) + infinite scroll + Add to Cart |
-| **Cart** | Drawer/Modal with item list, qty controls, remove & total calculation |
-| **Checkout** | Login/Signup popup → Payment simulation → Order receipt |
-| **Order Success** | Full-screen modal with animation & order details |
+## Frontend
 
----
+* React.js
+* Tailwind CSS
+* Axios
+* React Router
 
-## 🖼️ UI Gallery
+## Backend
 
-### 🏠 Home & Product Pages
-| Products Page | Filter by Category | Search Product |
-|:--:|:--:|:--:|
-| ![Products Page](./screenshots/products-page.png) | ![Filter by Category](./screenshots/filter-by-category.png) | ![Search Product](./screenshots/search-product.png) |
+* Node.js
+* Express.js
 
----
+## Database
 
-### 📱 Mobile Experience
-| Product Page (Mobile) | Filter Drawer (Mobile) | Cart (Mobile) |
-|:--:|:--:|:--:|
-| ![Product Page Mobile](./screenshots/product-page-mobile.png) | ![Filter Mobile](./screenshots/filter-mobile.png) | ![Cart Mobile](./screenshots/cart-mobile.png) |
+* PostgreSQL
+* Raw SQL Queries using `pg` library
 
----
+## Other Concepts
 
-### 💻 Desktop Views
-| Cart (Desktop) | Checkout (Desktop) |
-|:--:|:--:|
-| ![Cart Desktop](./screenshots/cart-desktop.png) | ![Checkout Desktop](./screenshots/checkout-desktop.png) |
+* Cursor-based Pagination
+* Dynamic Filtering
+* Search
+* Category Filtering
+* Price Range Filtering
+* Responsive Design
 
 ---
 
-### 💳 Checkout Flow
-| Checkout (Mobile) | Payment Processing | Toast Notification |
-|:--:|:--:|:--:|
-| ![Checkout Mobile](./screenshots/checkout-mobile.png) | ![Payment Processing](./screenshots/payment-processing-mock.png) | ![Toast Notification](./screenshots/toat-notification.png) |
+# ✨ Key Features
+
+* Product listing
+* Product filtering by category
+* Product search
+* Price range filtering
+* Cursor-based pagination
+* Add product functionality
 
 ---
 
-### ✅ Order Confirmation
-| Order Placed (Desktop) | Order Placed (Mobile) |
-|:--:|:--:|
-| ![Order Placed Desktop](./screenshots/order-placed-moc.png) | ![Order Placed Mobile](./screenshots/order-placed-mobile.png) |
+# 💻 API Endpoints
 
-👨‍💻 Developer
-Name: Shailesh Prajapati
-📩 Email:  prajapatishailesh4941@gmail.com
+| Method | Endpoint                                  | Description                                             |
+| ------ | ----------------------------------------- | ------------------------------------------------------- |
+| GET    | `/api/products`                           | Fetch all products with filtering and cursor pagination |
+| GET    | `/api/products?categories=Electronics`    | Filter products by category                             |
+| GET    | `/api/products?search=phone`              | Search products by name                                 |
+| GET    | `/api/products?minPrice=100&maxPrice=500` | Filter products by price range                          |
+| GET    | `/api/products?cursor=encodedCursorValue` | Fetch next batch of products using cursor               |
+| POST   | `/api/products`                           | Add new product                                         |
+| DELETE   | `/api/products`                           | delete existing product  product                                         |
+
+---
+
+# 📦 Product Fetch API Features
+
+The products API supports:
+
+* Category filtering
+* Search by product name
+* Price filtering
+* Cursor pagination
+
+Example:
+
+```bash
+GET /api/products?categories=Electronics,Books&search=laptop&minPrice=500&maxPrice=2000
+```
+
+---
+
+# ⚡ Pagination Strategy
+
+This project uses **cursor-based pagination** instead of offset pagination.
+
+Why cursor pagination?
+
+* Better performance for large datasets
+* Faster than OFFSET/LIMIT for big tables
+* Reduces database scan overhead
+* Scales better for production systems
+
+Pagination is implemented using:
+
+```sql
+ORDER BY updated_at DESC, id DESC
+```
+
+Cursor stores:
+
+* `updated_at`
+* `id`
+
+This ensures stable and efficient pagination.
+
+---
+
+# 📈 Performance Optimizations
+
+* Efficient SQL filtering
+* Reduced unnecessary queries
+* Cursor-based pagination using PostgreSQL
+* Optimized product fetch query
+
+---
+
+# 🔮 Future Improvements
+
+## 1. COUNT Query Optimization
+
+Currently, total product count is calculated using:
+
+```sql
+SELECT COUNT(*) FROM products
+```
+
+For large-scale production systems, this can become expensive.
+
+Possible improvements:
+
+* Approximate counts
+* Cached counts
+* Background aggregation
+* Infinite scroll without exact counts
+
+---
+
+## 2. Database Indexing
+
+Indexes can be improved for faster filtering:
+
+Recommended indexes:
+
+* `category`
+* `price`
+* `(updated_at, id)`
+
+Example:
+
+```sql
+CREATE INDEX idx_products_updated_id ON products(updated_at DESC, id DESC);
+```
+
+---
+
+## 3. Caching Layer
+
+Introduce:
+
+* Redis caching
+* API response caching
+* Query result caching
+
+This would significantly improve performance under high traffic.
+
+---
+
+# 🖼️ UI Gallery
+
+## 🏠 Home Page
+
+* home-desktop.png
+* home-mobile.png
+
+---
+
+## 🛍️ Products Page
+
+* products-desktop.png
+* products-2-desktop.png
+* products-mobile.png
+
+---
+
+## 🎛️ Filters
+
+* filters-mobile.png
+
+---
+
+## ➕ Add Product
+
+* add-product-desktop.png
+* add-product-mobile.png
+
+---
+
+# 📱 Responsive Design
+
+The application is optimized for:
+
+* Desktop
+* Tablet
+* Mobile devices
+
+---
+
+# 👨‍💻 Developer
+
+**Shailesh Prajapati**
+
+📩 Email: [prajapatishailesh4941@gmail.com](mailto:prajapatishailesh4941@gmail.com)
 🐙 GitHub: https://github.com/Shailesh7026/
 
-“Built with ❤️ using React, Node, and MongoDB ”
+Built with ❤️ using React, Node.js, Express, and PostgreSQL.

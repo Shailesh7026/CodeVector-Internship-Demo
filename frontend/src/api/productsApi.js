@@ -1,23 +1,21 @@
 import axiosClient from './axiosClient';
 
 export const getProducts = async ({
-  page = 1,
-  limit = 10,
+  limit = 8,
   categories,
   minPrice,
   maxPrice,
   search,
-  includeOutOfStock = false
+  cursor = null
 } = {}) => {
   try {
     const params = {
-      page,
       limit,
+      ...(cursor && { cursor }),
       ...(categories && { categories: Array.isArray(categories) ? categories.join(',') : categories }),
       ...(minPrice !== undefined && { minPrice }),
       ...(maxPrice !== undefined && { maxPrice }),
-      ...(search && { search }),
-      includeOutOfStock
+      ...(search && { search })
     };
 
     const response = await axiosClient.get('/products', { params });
@@ -41,11 +39,37 @@ export const getProductById = async (id) => {
 export const getCategories = async () => {
   try {
     // Don't have api for categories yet send static data
-    const categories = ['electronics', "men's clothing", 'jewelery', 'pet supplies'];
+    const categories = [
+  "Electronics",
+  "Books",
+  "Clothing",
+  "Sports",
+  "Home"
+];
     
     return categories;
   } catch (error) {
     console.error('Failed to fetch categories:', error);
     throw new Error(error.response?.data?.message || 'Failed to fetch categories');
+  }
+};
+
+export const addProduct = async (productData) => {
+  try {
+    const response = await axiosClient.post('/products', productData);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to add product:', error);
+    throw new Error(error.response?.data?.message || 'Failed to add product');
+  }
+};
+
+export const deleteProduct = async (id) => {
+  try {
+    const response = await axiosClient.delete(`/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Failed to delete product with id ${id}:`, error);
+    throw new Error(error.response?.data?.message || 'Failed to delete product');
   }
 };
