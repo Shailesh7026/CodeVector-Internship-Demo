@@ -17,11 +17,13 @@ const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// const allowedOrigins = [
+//   process.env.FRONTEND_BASE_URL || "http://localhost:3001",
+//   process.env.FRONTEND_BASE_URL_PROD || "https://codevector-internship-demo-1.onrender.com"
+// ];
+
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_BASE_URL,
-    process.env.FRONTEND_BASE_URL_PROD
-  ], 
+  origin: "*", 
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin']

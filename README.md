@@ -177,41 +177,32 @@ This would significantly improve performance under high traffic.
 
 ## 🏠 Home Page
 
-* home-desktop.png
-* home-mobile.png
+* screenshots\home-desktop.png
+* screenshots\home-mobile.png
 
 ---
 
 ## 🛍️ Products Page
 
-* products-desktop.png
-* products-2-desktop.png
-* products-mobile.png
+* screenshots\products-desktop.png
+* screenshots\products-2-desktop.png
+* screenshots\products-mobile.png
 
 ---
 
 ## 🎛️ Filters
 
-* filters-mobile.png
+* screenshots\filters-mobile.png
 
 ---
 
 ## ➕ Add Product
 
-* add-product-desktop.png
-* add-product-mobile.png
+* screenshots\add-product-desktop.png
+* screenshots\add-product-mobile.png
 
 ---
 
-# 📱 Responsive Design
-
-The application is optimized for:
-
-* Desktop
-* Tablet
-* Mobile devices
-
----
 
 # 👨‍💻 Developer
 
