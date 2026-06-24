@@ -1,7 +1,10 @@
 import axios from 'axios';
+import "dotenv/config";
+
+const backendBaseUrl = process.env.VITE_REACT_APP_ENV === 'production' ? process.env.VITE_BACKEND_BASE_URL_PROD : process.env.VITE_BACKEND_BASE_URL;
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: `${backendBaseUrl}/api/v1`,
   headers: {
     'Content-Type': 'application/json'
   },

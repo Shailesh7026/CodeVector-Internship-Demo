@@ -17,7 +17,10 @@ const server = app.listen(PORT, () => {
 });
 
 app.use(cors({
-  origin: 'http://localhost:3001', 
+  origin: [
+    process.env.FRONTEND_BASE_URL,
+    process.env.FRONTEND_BASE_URL_PROD
+  ], 
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin']

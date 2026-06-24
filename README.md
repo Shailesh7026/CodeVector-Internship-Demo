@@ -60,13 +60,13 @@ Database (Supabase - PostgreSQL)
 
 | Method | Endpoint                                  | Description                                             |
 | ------ | ----------------------------------------- | ------------------------------------------------------- |
-| GET    | `/api/products`                           | Fetch all products with filtering and cursor pagination |
-| GET    | `/api/products?categories=Electronics`    | Filter products by category                             |
-| GET    | `/api/products?search=phone`              | Search products by name                                 |
-| GET    | `/api/products?minPrice=100&maxPrice=500` | Filter products by price range                          |
-| GET    | `/api/products?cursor=encodedCursorValue` | Fetch next batch of products using cursor               |
-| POST   | `/api/products`                           | Add new product                                         |
-| DELETE   | `/api/products`                           | delete existing product  product                                         |
+| GET    | `/api/v1/products`                           | Fetch all products with filtering and cursor pagination |
+| GET    | `/api/v1/products?categories=Electronics`    | Filter products by category                             |
+| GET    | `/api/v1/products?search=phone`              | Search products by name                                 |
+| GET    | `/api/v1/products?minPrice=100&maxPrice=500` | Filter products by price range                          |
+| GET    | `/api/v1/products?cursor=encodedCursorValue` | Fetch next batch of products using cursor               |
+| POST   | `/api/v1/products`                           | Add new product                                         |
+| DELETE   | `/api/v1/products`                           | delete existing product  product                                         |
 
 ---
 
